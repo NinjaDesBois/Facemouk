@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,9 @@ Route::post('verify',[HomeController::class, 'verifyCode'])->name('verify');
 Route::get('profile-edit/{pseudo}',[HomeController::class, 'editProfile'])->name('profile.edit');
 Route::put('profile-edit/{pseudo}',[HomeController::class, 'updateProfile'])->name('update.profile');
 Route::put('password-edit/{pseudo}',[HomeController::class, 'updatePassword'])->name('update.password');
+
+
+Route::resource('posts',PostsController::class)->middleware('auth');
+
+Route::post('add-like', [PostsController::class, 'storeLike'])->name('like.store');
+

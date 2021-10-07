@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
+     
     /**
      * Show the application dashboard.
      *
@@ -64,8 +65,10 @@ class HomeController extends Controller
     }
 
     public function Welcome()
-    {
-        return view('welcome');
+    {   
+        $posts= Post::orderBy('created_at' , 'desc')->get();
+        $user=Auth::user();
+        return view('welcome',compact('user','posts'));
     }
 
     public function editProfile($pseudo)

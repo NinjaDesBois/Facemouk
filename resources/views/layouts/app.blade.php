@@ -17,20 +17,24 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('welcome.scss')}}">
+    <link rel="stylesheet" href="{{asset('welcome.css')}}">
     <link rel="stylesheet" href="{{ asset('home.css') }}">
     <link rel="stylesheet" href="{{ asset('edit.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+   <style> 
+body{
+    background-color: #f7f7f7;
+}
+</style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
     
-                    <img style="height:45px; width:160px; margin-left:-80px;" href="{{ url('/') }}" src="https://see.fontimg.com/api/renderfont4/6Y4Ov/eyJyIjoiZnMiLCJoIjo4MSwidyI6MTI1MCwiZnMiOjY1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/RkFDRU1PVUs/urban-sketart.png" alt="Graffiti fonts"></a>
-                <img src={{asset('image/facemouk.png')}} alt="" style="height: 40px ; width:40px;">
+                  <a href="{{ route('welcome') }}"> <img style="height:45px; width:160px; margin-left:-80px;"  src="https://see.fontimg.com/api/renderfont4/6Y4Ov/eyJyIjoiZnMiLCJoIjo4MSwidyI6MTI1MCwiZnMiOjY1LCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/RkFDRU1PVUs/urban-sketart.png" alt="Graffiti fonts"></a>
+                <img src={{asset('image/facemouk.png')}} alt="" href="{{ route('welcome') }}" style="height: 40px ; width:40px;">
                 
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -59,11 +63,17 @@
                                 </li>
                             @endif
                         @else
+                        
                             <li class="nav-item dropdown">
+                                
+                            <div class="d-flex">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
+                                <a href="" class="mt-2 ms-2"><i class="fas fa-bell"><span>{{count(Auth::user()->notifications)}}</span></i></a>
 
+                                <a href="{{ route('home' , Auth::user()->pseudo) }}" class="btn btn-primary ms-2">Profil</a>
+                            </div>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -75,7 +85,10 @@
                                         @csrf
                                     </form>
                                 </div>
+                                
                             </li>
+                            
+
                         @endguest
                     </ul>
                 </div>
@@ -91,5 +104,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     @include('flashy::message')
+    @yield('script')
 </body>
 </html>
+
+
+
