@@ -1,25 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <style>
-        .fas {
-            font-size: 20px;
-            cursor: pointer;
-            user-select: none;
-            color: black;
-
-        }
-
-        .fas-dislike {
-            color: gold;
-        }
-
-        .fas:hover {
-            color: gold;
-        }
-
-    </style> --}}
-    <div class="content" style="background-color: #F7F7F7">
+    @include('story')
+  <div class="content" style="background-color: #F7F7F7">
         <div>
             <a href="{{ route('posts.create') }}" type="button" class="btn btn-primary">ADD POST</a>
         </div>
@@ -30,8 +13,10 @@
 
             <section class="instagram-card my-3" id="">
                 @include('posts.show')
-    </section>
-    @endforeach
+            </section>
+        @endforeach
+        {{-- Afficher la pagination du Homecontroller paginate()-> --}}
+        <div class="d-flex justify-content-center">{{ $posts->links() }}</div>
     </div>
 
 @section('script')

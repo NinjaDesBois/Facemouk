@@ -43,7 +43,7 @@ class LikeNotify extends Notification
         return (new MailMessage)
                     ->line('someone who loves your shit post')
                     ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Thank you for using our application!')
     }
 
     /**

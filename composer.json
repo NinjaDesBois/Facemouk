@@ -9,9 +9,11 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
+        "laravel/passport": "^10.1",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "mcamara/laravel-localization": "^1.6",
         "mercuryseries/flashy": "^1.0"
     },
     "require-dev": {
@@ -27,8 +29,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": ["app/Http/Helper.php"]
     },
+
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

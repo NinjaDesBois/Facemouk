@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="content">
 
         <header>
 
@@ -20,17 +20,16 @@
 
                         <h1 class="profile-user-name">{{ $user->pseudo }}</h1>
                            
-                        @if (Auth::user()->id === $user->id)
-                        <a type="button" href="{{ route('profile.edit', $user->pseudo) }}"
-                            class="btn profile-edit-btn btn">Edit Profile</a>
-                        @endif
+                        
+                       
+                        
                         
 
                         <button class="btn profile-edit-btn btn-primary mb-4">Follow</button>
-
-                        <button class="btn profile-settings-btn mb-4" aria-label="profile settings"><i class="fas fa-cog"
-                                aria-hidden="true"></i></button>
-
+                        @if (Auth::user()->id === $user->id)
+                        <a class="btn profile-settings-btn mb-4" aria-label="profile settings" type="button" href="{{ route('profile.edit', $user->pseudo) }}"><i class="fas fa-cog"
+                                aria-hidden="true"></i></a>
+                                @endif
                     </div>
 
                     <div class="profile-stats d-flex">
@@ -58,17 +57,19 @@
             <!-- End of container -->
 
         </header>
-        @foreach ($user->posts as $post)
+       
             <main>
-
+                
                 <div class="container">
-
+                    
                     <div class="gallery">
-
-                        <div class="gallery-item d-flex flex-wrap" style="max-width: 30%" tabindex="0">
-
+                        @foreach ($user->posts as $post)
+                        <div class="gallery-item"  tabindex="0">
+                            
+                           
+                           
                             <img src="{{ asset($post->photo) }}" class="gallery-image" alt="">
-
+                      
                             <div class="gallery-item-info">
 
                                 <ul>
@@ -79,21 +80,21 @@
                                 </ul>
 
                             </div>
-
-                        </div>
-
-
-
+                           
+                        </div> 
+                        @endforeach
+                        
 
                     </div>
+                   
                     <!-- End of gallery -->
 
 
                 </div>
                 <!-- End of container -->
-
+              
             </main>
-            @endforeach
+           
     </div>
     
 @endsection

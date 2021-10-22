@@ -66,7 +66,9 @@ class HomeController extends Controller
 
     public function Welcome()
     {   
-        $posts= Post::orderBy('created_at' , 'desc')->get();
+        // LIGNE DE CODE POUR INVERSER LORDRE DE AFFICHAGE avec ->get()....
+        // En changeant le ->get() par paginate(2)-> afin de paginer les donnees
+        $posts= Post::orderBy('created_at' , 'desc')->paginate(6);
         $user=Auth::user();
         return view('welcome',compact('user','posts'));
     }

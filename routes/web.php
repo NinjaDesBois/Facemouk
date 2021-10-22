@@ -32,3 +32,13 @@ Route::resource('posts',PostsController::class)->middleware('auth');
 
 Route::post('add-like', [PostsController::class, 'storeLike'])->name('like.store');
 
+
+Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+{
+    Route::get('test',function(){
+        return view("test");
+    });
+	
+});
+
+
